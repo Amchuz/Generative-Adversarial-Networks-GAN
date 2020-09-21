@@ -15,3 +15,9 @@ Generator and Discriminator are actually playing a Mini-Max game. Generator is t
   
 <img src="https://github.com/Amchuz/Generative-Adversarial-Networks-GAN/blob/master/Mini-max%20game.png">
 
+That is, we are **minizing** the loss fuction w.r.t the generator parameters and **maximizing** the loss function w.r.t the discriminator parameters.\
+Ok, let's go little bit more into details. 
+  
+<img src="https://github.com/Amchuz/Generative-Adversarial-Networks-GAN/blob/master/Discriminator.png">
+  
+Discriminator network outputs a single scaled value, **D(X)** per image which indicates how likely it is the image **x**  is infact a real images coming from the dataset.
