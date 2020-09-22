@@ -25,4 +25,13 @@ And it is same for the Generator images.
   
 <img src="https://github.com/Amchuz/Generative-Adversarial-Networks-GAN/blob/master/Generator%20in%20Discriminator.png">
   
-The Generator images are **G(z), z** here is the noise vector and **G** is the Generator network. And hence, Discriminator outputs the score for G(z) as D(G(z))
+The Generator images are **G(z), z** here is the noise vector and **G** is the Generator network. And hence, Discriminator outputs the score for G(z) as D(G(z)).
+While training, we want the discriminator to recognize real image x as real. So we want to output a high value close to 1. 
+  
+<img src="https://github.com/Amchuz/Generative-Adversarial-Networks-GAN/blob/master/realimage.png">
+  
+At the same time, we also want to recognize fake images G(z) as fake and therefore, outputting a low value close to zero.
+  
+<img src="https://github.com/Amchuz/Generative-Adversarial-Networks-GAN/blob/master/fakeimage.png">
+
+
