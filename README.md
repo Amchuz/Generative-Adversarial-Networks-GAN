@@ -34,6 +34,6 @@ At the same time, we also want to recognize fake images G(z) as fake and therefo
 <img src="https://github.com/Amchuz/Generative-Adversarial-Networks-GAN/blob/master/fakeimage.png">
   
 <img src="https://github.com/Amchuz/Generative-Adversarial-Networks-GAN/blob/master/filoss.png">
-
-
+  
+The first part (Ex⇠pdata(x)[logD(x)]) does not depend on the parameters of the Generator. So when optimizing for the Generator, we only have to do it for the second part (Ez⇠pz(z)[log(1-D(G(z))]) real data generated data D(x) ⇡ 0 ) logD(x) ⌧ 0 should be 1D(x) should be 0D(G(z)) Discrimina.
 
