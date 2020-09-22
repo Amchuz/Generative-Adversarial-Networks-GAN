@@ -42,9 +42,16 @@ Got it ? Now we can use this idea to generate the algorithm.
 <img src="https://github.com/Amchuz/Generative-Adversarial-Networks-GAN/blob/master/algorithm.png" width=600 height=450>
   
 It continues till the iteration ends. The algorithm starts with two things, sample a batch of noise vectors and a batch of images from the dataset. Then it is going to use the objective function from the above discussion in order to update the parameters of the discriminator by doing gradient descent w.r.t it's parameters. During the updation of Discriminator, the generator part is fixed. Once we have updated the discriminator for a couple of time steps, we will freeze the weights of discriminator, and goes to another part where the generator is trained. Prior to that, we resample the batch of noise vectors. We generate images with them and then, apply gradient descent on the second part of the objective function in order to update the parameters of the generator. Well, that's the algorithm. \
-In practical, there are some additional steps that can be used to converge it smoothly because it tends to be a little unstable. Now a days, there are a wide variety of objective functions that is used to train these GANs but all of them are build on the same core idea that we have discussed here. To know more about the various objective fuctions, check out <a href="http://hunterheidenreich.com/blog/gan-objective-functions/" target="_blank">the blog.</a> Now, let us look at two final ideas that we are going to be using in our generative model.
+In practical, there are some additional steps that can be used to converge it smoothly because it tends to be a little unstable. Now a days, there are a wide variety of objective functions that is used to train these GANs but all of them are build on the same core idea that we have discussed here. To know more about the various objective fuctions, check out <a href="http://hunterheidenreich.com/blog/gan-objective-functions/">the blog.</a> Now, let us look at two final ideas that we are going to be using in our generative model.
   
-## Progressive Growing
+## 1.Progressive Growing
   
 <img src="https://github.com/Amchuz/Generative-Adversarial-Networks-GAN/blob/master/progressive%20growing.gif" width=600 height=300>
   
+This was an idea published by NVIDIA. We basically start from a generative model that generates very small images with low resolution and at the same time, the discriminator also gets to discriminate very low resolution images. This make the entire process simple. So this network is very stable and it converges quickly. Once that networ has stabilized, we then simply add an additional layer to both the generator and discriminator architecture which works at a slightly higher resolution and we keep on training. Instead of just adding this layers one shot, we basically do it gradually by blending the previous layer towards the higher resolution one.
+
+## 2.Style-GAN
+  
+In **traditional generator architecture**, it gets a random noise sample as an input and it is fed into a bunch of upsampling and convoutional layers until we get an image.
+  
+<img src="https://github.com/Amchuz/Generative-Adversarial-Networks-GAN/blob/master/traditional.png"> <img align="right" src="https://github.com/Amchuz/Generative-Adversarial-Networks-GAN/blob/master/style-based%20generator.png">
