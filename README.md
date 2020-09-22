@@ -50,8 +50,13 @@ In practical, there are some additional steps that can be used to converge it sm
   
 This was an idea published by NVIDIA. We basically start from a generative model that generates very small images with low resolution and at the same time, the discriminator also gets to discriminate very low resolution images. This make the entire process simple. So this network is very stable and it converges quickly. Once that networ has stabilized, we then simply add an additional layer to both the generator and discriminator architecture which works at a slightly higher resolution and we keep on training. Instead of just adding this layers one shot, we basically do it gradually by blending the previous layer towards the higher resolution one.
 
-## 2.Style-GAN
+## 2.Style-GAN architecture
   
-In **traditional generator architecture**, it gets a random noise sample as an input and it is fed into a bunch of upsampling and convoutional layers until we get an image.
+In **traditional generator architecture**, it gets a random noise sample as an input and it is fed into a bunch of upsampling and convoutional layers until we get an image. **StyleGAN generator architecture** is slightly different. It has a mapping network. This mapping network takes the noise vector **z** and transforms it into a different vector called **w**. w vector doesn't have to be gaussian anymore. The distributions of w can be whatever generator want it to be. After that, the generator architecture doesn't start from noise vector anymore. It starts from a constant vector. This constant vector is optimized during training. The output of the mapping layer **w** is plugged into multiple layers of the generative architecture using a blending layer called **AdaIN.** During training also we add noise to these parameters. 
   
 <img src="https://github.com/Amchuz/Generative-Adversarial-Networks-GAN/blob/master/traditional.png"> <img align="right" src="https://github.com/Amchuz/Generative-Adversarial-Networks-GAN/blob/master/style-based%20generator.png">
+  
+With there two tricks combined, StyleGAN is created. 
+  
+<img src="https://github.com/Amchuz/Generative-Adversarial-Networks-GAN/blob/master/styleGAN.gif">
+
