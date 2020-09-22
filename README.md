@@ -59,4 +59,13 @@ In **traditional generator architecture**, it gets a random noise sample as an i
 With there two tricks combined, StyleGAN is created. 
   
 <img src="https://github.com/Amchuz/Generative-Adversarial-Networks-GAN/blob/master/styleGAN.gif">
-
+  
+## Playing with StyleGAN
+  
+- StyleGAN's latent space has Structure.
+- This structure is learned fully **unsupervised** during the adversarial training processes.
+- **Core Idea** : Instead of manipulation images in the pixel domain, let's manipulate them in the latent space.
+- To do this, we first need to find a query image inside styleGAN's latent space of the generator. 
+  
+### How to find latent vector z for a query image ?
+  
