@@ -69,3 +69,5 @@ With there two tricks combined, StyleGAN is created.
   
 ### How to find latent vector z for a query image ?
   
+We could try randomly sampling the whole unch of these latent vectors and see which one is closest but, that will take a long time. \
+One of the approach we could use is to randomly start from any vector z and generate and image and then compare that image to the query image. We could define a simple loss function L2 loss (pixel by pixel difference) and gradient descent to the pixel loss backpropagate generator model into the latent code and update i
