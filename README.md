@@ -69,5 +69,22 @@ With there two tricks combined, StyleGAN is created.
   
 ### How to find latent vector z for a query image ?
   
-We could try randomly sampling the whole unch of these latent vectors and see which one is closest but, that will take a long time. \
-One of the approach we could use is to randomly start from any vector z and generate and image and then compare that image to the query image. We could define a simple loss function L2 loss (pixel by pixel difference) and gradient descent to the pixel loss backpropagate generator model into the latent code and update i
+We could try randomly sampling the whole bunch of these latent vectors and see which one is closest but, that will take a long time. \
+One of the approach we could use is to randomly start from any vector z and generate and image and then compare that image to the query image. We could define a simple loss function L2 loss (pixel by pixel difference) and gradient descent to the pixel loss backpropagate generator model into the latent code and update the vector. And that way, finally we can find optinal latent vector.
+  
+Unfortunately, this doesn't really work ! Sad :(
+  
+The L2 optimization objective start going in te direction of the image but far before it gets there it is going to get stuck in a very bad local minimum of an image that doesn't look like the query image.
+  
+We can think about a different apporoach. It is the idea of using a pretrained image classifier as a lens to look at the pixels. Rather than optimizing the L2 loss directly in the pixel space we are going to send both the output of our generator and the query image through a **pre-trained VGG network** that was trained to classify ImageNet images. But instead of actually going all the way to the last layer onto the classification, we are going to cut off the head of that network and extract a feature vector somewhere inside the last fully connected layers of that classifier. 
+  
+<img src="https://github.com/Amchuz/Generative-Adversarial-Networks-GAN/blob/master/VGG-16.png">
+  
+We send these images through the pretrained classifier, we extract a feature vector at some of the last fully connected layers in the network and this gives us a high-level semantic representation of what is in the image. It turns out that if we actually do gradient descent on this feature vector rather than on the pixels of the image, our approach does work.
+  
+<img src="https://github.com/Amchuz/Generative-Adversarial-Networks-GAN/blob/master/vector2query.png">
+  
+But, this apporach is really **slow.** What if there is a way to make a really good guess of the starting point where we start our search in the latent space. With that idea, we can make a dataset. First we sample a whole bunch of random vectors and send them through the generator and will generate faces. Once we have that dataset we can train a ResNet to go from the images to their respective latent code.
+  
+<img src="https://github.com/Amchuz/Generative-Adversarial-Networks-GAN/blob/master/ResNetpng">
+  
