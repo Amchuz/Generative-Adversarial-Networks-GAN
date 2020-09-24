@@ -112,3 +112,7 @@ Once we found that hyperplane if we take the normal with respect to that hyperpl
   
 <img src="https://github.com/Amchuz/Generative-Adversarial-Networks-GAN/blob/master/normal.png" width=450 height=300>
   
+Now what we have to do is, we take our query image, we find it's latent space vector and then from that point in latent space we start walking in the direction of what makes our image more female. 
+  
+<img src="https://github.com/Amchuz/Generative-Adversarial-Networks-GAN/blob/master/change.gif" width=500 height=300>
+  
