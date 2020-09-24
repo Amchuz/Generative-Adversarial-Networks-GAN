@@ -116,3 +116,6 @@ Now what we have to do is, we take our query image, we find it's latent space ve
   
 <img src="https://github.com/Amchuz/Generative-Adversarial-Networks-GAN/blob/master/change.gif" width=500 height=300>
   
+You can go through the <a href="https://drive.google.com/drive/folders/1LBWcmnUPoHDeaYlRiHokGyjywIdyhAQb:>code</a> for hands on experience.
+  
+Source : <a href="https://youtu.be/dCKbRCUyop8">Face editing with Generative Adversarial Networks</a>
