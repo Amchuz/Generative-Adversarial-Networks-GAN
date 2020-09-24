@@ -38,6 +38,8 @@ At the same time, we also want to recognize fake images G(z) as fake and therefo
 The first part (Ex⇠pdata(x)[logD(x)]) does not depend on the parameters of the Generator. So when optimizing for the Generator, we only have to do it for the second part (Ez⇠pz(z)[log(1-D(G(z))]).
   
 Got it ? Now we can use this idea to generate the algorithm.
+
+# Face editing with Generative Adversarial Networks
   
 <img src="https://github.com/Amchuz/Generative-Adversarial-Networks-GAN/blob/master/algorithm.png" width=600 height=450>
   
