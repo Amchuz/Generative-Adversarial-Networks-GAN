@@ -91,4 +91,24 @@ But, this apporach is really **slow.** What if there is a way to make a really g
 So, let's go through the whole pipeline now. We take a query image and we send it through the ResNet and this network gives us an initial estimate of the latent space vector in the StyleGAN network. We then take that latent vector and send it through the generator which gives us an image. On this image, we apply a pretrained VGG network in order to extract features from it and we do the same for our query image. In that feature space we start doing gradient descent. We minimize the L2 distance in this feature space and send those gradients through the generator model all the way back into our latent code. During this optimization process the generator weights itself are completely fixed and only thing we are updating is the latent code at the input of our generator. 
   
 <img src="https://github.com/Amchuz/Generative-Adversarial-Networks-GAN/blob/master/pipeline1.png" width=450 height=250> <img src="https://github.com/Amchuz/Generative-Adversarial-Networks-GAN/blob/master/pipeline2.png" width=450 height=250> 
-
+  
+#### Additional Tweaks :
+- Which specific layer of the VGG network are you using as that semantic feature vector. 
+- Possibility of apply a face- mask before computing losses.
+- Add a L1-penalty to the latent code to keep it close to StyleGAN's concept of a face.
+- Learning rate decay during optimization.
+  
+It is simple, right ? Now, it's time for a little bit of complication.
+  
+In order to play with the latent space we need another dataset. Because now, we want to start messing with specific attributes of those faces like age gender smiling etc. We ae going to randomly sample a whole bunch of these latent vectors and send them through the generator and get our faces. Then we are going to apply a pretrained classifier that was trained to recognize a bunch of these attributes. We can hand label these images with any kind of attribute we care about. StyleGAN latent space is actually a 512 dimensional space. It is really complicated. What we really care about is how a certain direction in that latent space changes the face that comes out of the generative model.
+  
+<img src="https://github.com/Amchuz/Generative-Adversarial-Networks-GAN/blob/master/direction.png" width=450 height=300>
+  
+With the data set that we just created we can basically put all of those faces at their respective locations and we can start looking at all of the attributes that we have collected. All of those attributes are quite well separable by a relatively simple linear hyperplane in that latent space. 
+  
+<img src="https://github.com/Amchuz/Generative-Adversarial-Networks-GAN/blob/master/hyperplane.png" width=450 height=300>
+  
+Once we found that hyperplane if we take the normal with respect to that hyperplane, this direction in the latent space basically tells us how can I make a face more female (in the given picture). 
+  
+<img src="https://github.com/Amchuz/Generative-Adversarial-Networks-GAN/blob/master/normal.png" width=450 height=300>
+  
